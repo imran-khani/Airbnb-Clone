@@ -7,7 +7,7 @@ const Avatar = () => {
    <Image
    width={30}
     height={30}
-    className=""
+    className="rounded-full"
     src={'/placeholder.jpg'}
     alt="avatar"
    />
