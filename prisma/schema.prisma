@@ -1,3 +1,5 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
     provider = "prisma-client-js"
@@ -9,18 +11,19 @@ datasource db {
 }
 
 model User {
-    id             String        @id @default(auto()) @map("_id") @db.ObjectId
+    id             String    @id @default(auto()) @map("_id") @db.ObjectId
     name           String?
-    email          String?       @unique
+    email          String?   @unique
     emailVerified  DateTime?
     image          String?
     hashedPassword String?
-    createdAt      DateTime?     @default(now())
-    updatedAt      DateTime?     @updatedAt
-    favoriteIds    String[]      @db.ObjectId
-    accounts       Account[]
-    listings       Listing[]
-    reservations   Reservation[]
+    createdAt      DateTime  @default(now())
+    updatedAt      DateTime  @updatedAt
+    favoriteIds    String[]  @db.ObjectId
+
+    accounts     Account[]
+    listings     Listing[]
+    reservations Reservation[]
 }
 
 model Account {
@@ -31,12 +34,13 @@ model Account {
     providerAccountId String
     refresh_token     String? @db.String
     access_token      String? @db.String
-    expire_at         Int?
+    expires_at        Int?
     token_type        String?
     scope             String?
     id_token          String? @db.String
     session_state     String?
-    user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@unique([provider, providerAccountId])
 }
@@ -46,10 +50,10 @@ model Listing {
     title         String
     description   String
     imageSrc      String
-    category      String
     createdAt     DateTime @default(now())
+    category      String
     roomCount     Int
-    bathroomcount Int
+    bathroomCount Int
     guestCount    Int
     locationValue String
     userId        String   @db.ObjectId
@@ -63,8 +67,8 @@ model Reservation {
     id         String   @id @default(auto()) @map("_id") @db.ObjectId
     userId     String   @db.ObjectId
     listingId  String   @db.ObjectId
-    startData  DateTime
-    endData    DateTime
+    startDate  DateTime
+    endDate    DateTime
     totalPrice Int
     createdAt  DateTime @default(now())
 
