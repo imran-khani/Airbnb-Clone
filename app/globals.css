@@ -7,3 +7,8 @@
         border-width: 1px;
     }
 }
+
+html,body,
+:root{
+    height: 100%;
+}
