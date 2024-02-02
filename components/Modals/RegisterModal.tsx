@@ -6,6 +6,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useState } from "react";
 import Modal from "./Modal";
 import Heading from "../Heading";
+import Input from "../Inputs/Input";
 
 const RegisterModal = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -36,14 +37,40 @@ const RegisterModal = () => {
             });
     };
 
-    const bodyContent= (
+    const bodyContent = (
         <>
             <div className="flex flex-col gap-4">
-                <Heading title="Welcome to Airbnb" subtitle="Create an Account" />
-                <Input />
+                <Heading
+                    title="Welcome to Airbnb"
+                    subtitle="Create an Account"
+                />
+                <Input
+                    id="email"
+                    label="Email"
+                    type="email"
+                    required
+                    register={register}
+                    errors={errors}
+                />
+                <Input
+                    id="name"
+                    label="Name"
+                    disabled={isLoading}
+                    register={register}
+                    errors={errors}
+                    required
+                />
+                <Input
+                    id="password"
+                    label="Password"
+                    disabled={isLoading}
+                    register={register}
+                    errors={errors}
+                    required
+                />
             </div>
         </>
-    )
+    );
 
     return (
         <>
