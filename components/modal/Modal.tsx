@@ -8,6 +8,7 @@ import React, {
   useState,
 } from "react";
 import { IoMdClose } from "react-icons/io";
+import { Button } from "..";
 
 interface ModalProps {
   isOpen?: boolean;
@@ -122,7 +123,13 @@ const Modal: FC<ModalProps> = ({
                 <h3 className="text-lg font-semibold">{title}</h3>
               </div>
                 {/* body */}
-                <div className="relative p-6 flex-auto"></div>
+                <div className="relative p-6 flex-auto">{body}</div>
+                {/* footer */}
+                <div className="flex flex-col gap-2 p-6">
+                    <div className="flex flex-row items-center gap-4 w-full">
+                        <Button label="Button" outline onClick={()=>{}} />
+                    </div>
+                </div>
             </div>
           </div>
         </div>
