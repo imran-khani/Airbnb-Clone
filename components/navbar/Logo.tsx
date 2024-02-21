@@ -12,7 +12,9 @@ const Logo = () => {
         alt="logo"
         width={100}
         height={100}
-        className="hidden md:block cursor-pointer"
+        className="hidden md:block cursor-pointer w-full"
+        priority
+        blurDataURL="/logo.png"
       />
     </Link>
   );

@@ -5,5 +5,6 @@ import Container from "./Container";
 import UserMenu from "./navbar/UserMenu";
 import Avatar from "./Avatar";
 import MenuItem from "./navbar/MenuItem";
+import Modal from "./modal/Modal";
 
-export { Logo, Navbar, Search, Container, UserMenu, Avatar, MenuItem};
+export { Logo, Navbar, Search, Container, UserMenu, Avatar, MenuItem, Modal};
