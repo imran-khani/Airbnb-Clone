@@ -51,7 +51,7 @@ const Modal: FC<ModalProps> = ({
     }, 300);
   }, [disabled]);
 
-  const hadleSubmit = useCallback(() => {
+  const handleSubmit = useCallback(() => {
     if (disabled) {
       return;
     }
@@ -108,7 +108,7 @@ const Modal: FC<ModalProps> = ({
                 border-b-[1px]"
               >
                 <button
-                onClick={handleClose}
+                  onClick={handleClose}
                   className="
                     p-1
                     border-0 
@@ -118,18 +118,30 @@ const Modal: FC<ModalProps> = ({
                     left-9
                   "
                 >
-                    <IoMdClose size={18} />
+                  <IoMdClose size={18} />
                 </button>
                 <h3 className="text-lg font-semibold">{title}</h3>
               </div>
-                {/* body */}
-                <div className="relative p-6 flex-auto">{body}</div>
-                {/* footer */}
-                <div className="flex flex-col gap-2 p-6">
-                    <div className="flex flex-row items-center gap-4 w-full">
-                        <Button label="Button" outline onClick={()=>{}} />
-                    </div>
+              {/* body */}
+              <div className="relative p-6 flex-auto">{body}</div>
+              {/* footer */}
+              <div className="flex flex-col gap-2 p-6">
+                <div className="flex flex-row items-center gap-4 w-full">
+                  {secondaryAction && secondaryActionLabel && (
+                    <Button
+                      outline
+                      label={secondaryActionLabel}
+                      onClick={handleSecondaryAction}
+                      disabled={disabled}
+                    />
+                  )}
+                  <Button
+                    label={actionLabel}
+                    onClick={handleSubmit}
+                    disabled={disabled}
+                  />
                 </div>
+              </div>
             </div>
           </div>
         </div>
