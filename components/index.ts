@@ -7,6 +7,7 @@ import Avatar from "./Avatar";
 import MenuItem from "./navbar/MenuItem";
 import Modal from "./modal/Modal";
 import Button from "./Button";
+import RegisterModal from "./modal/RegisterModal";
 
 export {
   Logo,
@@ -18,4 +19,5 @@ export {
   MenuItem,
   Modal,
   Button,
+  RegisterModal
 };
