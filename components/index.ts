@@ -8,6 +8,8 @@ import MenuItem from "./navbar/MenuItem";
 import Modal from "./modal/Modal";
 import Button from "./Button";
 import RegisterModal from "./modal/RegisterModal";
+import Input from "./Input";
+import Heading from './Heading'
 
 export {
   Logo,
@@ -19,5 +21,7 @@ export {
   MenuItem,
   Modal,
   Button,
-  RegisterModal
+  RegisterModal,
+  Input,
+  Heading
 };
