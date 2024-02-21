@@ -6,7 +6,7 @@ import React from "react";
 
 const Logo = () => {
   return (
-    <Link href="/">
+    <Link href="/" className="inline-block">
       <Image
         src="/logo.png"
         alt="logo"
