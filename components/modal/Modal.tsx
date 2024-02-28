@@ -141,6 +141,7 @@ const Modal: FC<ModalProps> = ({
                     disabled={disabled}
                   />
                 </div>
+                {footer}
               </div>
             </div>
           </div>
