@@ -36,6 +36,10 @@ const LoginModal = () => {
       if (cb?.ok) {
         toast.success("LoggedIn Successfully");
         router.refresh();
+        loginModal.onClose()
+      }
+      if(cb?.error){
+        toast.error(cb.error)
       }
     });
   };
