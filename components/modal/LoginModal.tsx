@@ -5,14 +5,16 @@ import { useCallback, useState } from "react";
 import { toast } from "react-hot-toast";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import useLoginModal from "@/hooks/useLoginModal";
-import { Modal, Heading, Button, Input } from "..";
+import { Modal, Heading, Button, Input, RegisterModal } from "..";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import useRegisterModal from "@/hooks/useResgisterModal";
 
 const LoginModal = () => {
   const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const registerModal = useRegisterModal();
   const {
     register,
     handleSubmit,
@@ -44,7 +46,7 @@ const LoginModal = () => {
 
   const onToggle = useCallback(() => {
     loginModal.onClose();
-    loginModal.onOpen();
+    registerModal.onOpen();
   }, [loginModal, loginModal]);
 
   const bodyContent = (
@@ -100,7 +102,7 @@ const LoginModal = () => {
             className="
               text-neutral-800
               cursor-pointer 
-              hover:underline border-2 mr-3
+              hover:underline pl-3
             "
           >
             Sign Up
