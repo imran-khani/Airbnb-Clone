@@ -1,6 +1,4 @@
 "use client";
-
-import axios from "axios";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { useCallback, useState } from "react";
@@ -36,10 +34,10 @@ const LoginModal = () => {
       if (cb?.ok) {
         toast.success("LoggedIn Successfully");
         router.refresh();
-        loginModal.onClose()
+        loginModal.onClose();
       }
-      if(cb?.error){
-        toast.error(cb.error)
+      if (cb?.error) {
+        toast.error(cb.error);
       }
     });
   };
