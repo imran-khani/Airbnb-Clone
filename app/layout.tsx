@@ -1,35 +1,25 @@
 import type { Metadata } from "next";
-import { Nunito } from "next/font/google";
+import {Nunito } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navbar/Navbar";
-import { RegisterModal } from "@/components";
-import ToastProvider from "@/providers/ToastProvider";
-import LoginModal from "@/components/modal/LoginModal";
-import getCurrentUser from "./actions/getCurrentUser";
+import Navbar from '@/app/components/navbar/Navbar'
+const nunito =Nunito({ subsets: ["latin"] });
 
-const font = Nunito({
-  subsets: ["latin"],
-});
 export const metadata: Metadata = {
-  title: "Airbnb Clone",
-  description: "A clone of Airbnb's website",
+  title: "Practicing Airbnb",
+  description: "Practicing Airbnb with Next.js",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const currentUser = await getCurrentUser()
   return (
     <html lang="en">
-      <body className={font.className}>
-        <ToastProvider />
-        <LoginModal />
-        <RegisterModal />
-        <Navbar currentUser={currentUser} />
+      <body className={nunito.className}>
+        <Navbar />
         {children}
-      </body>
+        </body>
     </html>
   );
 }
