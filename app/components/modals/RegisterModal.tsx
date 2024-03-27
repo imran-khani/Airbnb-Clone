@@ -47,6 +47,8 @@ const RegisterModal = () => {
                 setIsLoading(false);
             });
     };
+
+    
     const onToggle = useCallback(() => {
         registerModal.onClose();
         loginModal.onOpen();
