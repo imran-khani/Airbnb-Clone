@@ -11,7 +11,7 @@ import Avatar from "../Avatar";
 import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
-
+import useRentModal from "@/app/hooks/useRentModal";
 
 interface UserMenuProps {
     currentUser: User | null;
@@ -22,11 +22,18 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
     const registerModal = useRegisterModal();
     const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
+    const rentModal = useRentModal()
 
     const toggleOpen = useCallback(() => {
         setIsOpen((value) => !value);
     }, []);
 
+    const onRent = useCallback(() => {
+        if (!currentUser) {
+            return loginModal.onOpen();
+        }
+        rentModal.onOpen()
+    }, [currentUser, loginModal,rentModal]);
     return (
         <div className="relative">
             <div className="flex flex-row items-center gap-3">
@@ -43,6 +50,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             transition 
             cursor-pointer
           "
+                    onClick={onRent}
                 >
                     Airbnb your home
                 </div>
@@ -66,7 +74,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 >
                     <AiOutlineMenu />
                     <div className="hidden md:block">
-                        <Avatar src={"/images/placeholder.jpg"} />
+                        <Avatar src={currentUser?.image} />
                     </div>
                 </div>
             </div>
@@ -106,7 +114,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                                 />
                                 <MenuItem
                                     label="Airbnb your home"
-                                    onClick={() => {}}
+                                    onClick={rentModal.onOpen}
                                 />
                                 <hr />
                                 <MenuItem

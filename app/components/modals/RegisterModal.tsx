@@ -4,7 +4,7 @@ import axios from "axios";
 import { FieldValues, useForm, SubmitHandler } from "react-hook-form";
 
 import toast from "react-hot-toast";
-import Input from "../Input";
+import Input from "../input/Input";
 import Heading from "../Heading";
 import Modal from "./Modal";
 import Button from "../Button";
