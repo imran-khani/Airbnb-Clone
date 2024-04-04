@@ -10,6 +10,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import CountrySelect from "../input/CountrySelect";
 import dynamic from "next/dynamic";
 import Counter from "../input/Counter";
+import ImageUpload from "../input/ImageUpload";
 
 enum STEPS {
     CATEGORY = 0,
@@ -83,7 +84,7 @@ const RentModal = () => {
             shouldTouch: true,
             shouldValidate: true,
         });
-    };
+    };  
 
     let bodyContent = (
         <div className="flex flex-col gap-8">
@@ -134,30 +135,42 @@ const RentModal = () => {
     }
 
     if (step === STEPS.INFO) {
+        bodyContent = (
+            <div className="flex flex-col gap-8">
+                <Heading
+                    title="Share some basic info about your place"
+                    subtitle="What amenities do you offer?"
+                />
+                <Counter
+                    title="Number of guests"
+                    subtitle="How many guests can your place accommodate?"
+                    value={guestCount}
+                    onChange={(value) => setCustomValue("guestCount", value)}
+                />
+                <Counter
+                    title="Number of rooms"
+                    subtitle="How many rooms are available?"
+                    value={roomCount}
+                    onChange={(value) => setCustomValue("roomCount", value)}
+                />
+                <Counter
+                    title="Number of bathrooms"
+                    subtitle="How many bathrooms are available?"
+                    value={bathroomCount}
+                    onChange={(value) => setCustomValue("bathroomCount", value)}
+                />
+            </div>
+        );
+    }
+
+    if (step === STEPS.IMAGES){
         bodyContent= (
             <div className="flex flex-col gap-8">
-            <Heading
-            title="Share some basic info about your place"
-            subtitle="What amenities do you offer?"
-            />
-            <Counter 
-            title="Number of guests"
-            subtitle="How many guests can your place accommodate?"
-            value={guestCount}
-            onChange={(value)=> setCustomValue("guestCount", value)}
-            />
-             <Counter 
-            title="Number of rooms"
-            subtitle="How many rooms are available?"
-            value={roomCount}
-            onChange={(value)=> setCustomValue("roomCount", value)}
-            />
-               <Counter 
-            title="Number of bathrooms"
-            subtitle="How many bathrooms are available?"
-            value={bathroomCount}
-            onChange={(value)=> setCustomValue("bathroomCount", value)}
-            />
+                <Heading
+                    title="Upload images of your place"
+                    subtitle="Show off your place!"
+                    />
+                    <ImageUpload />
             </div>
         )
     }
