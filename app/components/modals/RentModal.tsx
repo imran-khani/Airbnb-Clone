@@ -84,7 +84,7 @@ const RentModal = () => {
             shouldTouch: true,
             shouldValidate: true,
         });
-    };  
+    };
 
     let bodyContent = (
         <div className="flex flex-col gap-8">
@@ -163,16 +163,16 @@ const RentModal = () => {
         );
     }
 
-    if (step === STEPS.IMAGES){
-        bodyContent= (
+    if (step === STEPS.IMAGES) {
+        bodyContent = (
             <div className="flex flex-col gap-8">
                 <Heading
                     title="Upload images of your place"
                     subtitle="Show off your place!"
-                    />
-                    <ImageUpload onChange={()=>{}} value="" />
+                />
+                <ImageUpload onChange={() => {}} value="" />
             </div>
-        )
+        );
     }
 
     return (
