@@ -170,7 +170,7 @@ const RentModal = () => {
                     title="Upload images of your place"
                     subtitle="Show off your place!"
                     />
-                    <ImageUpload />
+                    <ImageUpload onChange={()=>{}} value="" />
             </div>
         )
     }
