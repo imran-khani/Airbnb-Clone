@@ -49,17 +49,18 @@ model Account {
 }
 
 model Listing {
-    id            String   @id @default(auto()) @map("_id") @db.ObjectId
+    id            String    @id @default(auto()) @map("_id") @db.ObjectId
     title         String
     description   String
     imageSrc      String
-    createdAt     DateTime @default(now())
+    createdAt     DateTime  @default(now())
+    updatedAt     DateTime? @updatedAt
     category      String
     roomCount     Int
     bathroomCount Int
     guestCount    Int
     locationValue String
-    userId        String   @db.ObjectId
+    userId        String    @db.ObjectId
     price         Int
 
     user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
