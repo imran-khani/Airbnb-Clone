@@ -3,10 +3,10 @@ import Container from "./components/Container";
 import EmptyState from "./components/EmptyState";
 import { getListings } from "./actions/getListings";
 import ListingCard from "./components/listings/ListingCard";
+import useNetwork from "./hooks/useNetwork";
 
 export default async function Home() {
     const listings = await getListings();
-
     if (listings.length === 0) {
         return (
             <ClientOnly>
