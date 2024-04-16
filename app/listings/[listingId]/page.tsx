@@ -1,16 +1,35 @@
+import getListingById from "@/app/actions/getListingById";
+import ClientOnly from "@/app/components/ClientOnly";
+import EmptyState from "@/app/components/EmptyState";
+import Image from "next/image";
 
-import getListingById from "@/app/actions/getListingById"
-
-interface Params {
-    listingId?:string;
+interface IParams {
+    listingId?: string;
 }
-const page = async(params:Params) => {
-    const listing = await getListingById(params)
-  return (
-    <div>
-        {listing?.title}
-    </div>
-  )
-}
+const ListingPage = async ({ params }: { params: IParams }) => {
+    const listing = await getListingById(params);
 
-export default page
+    if (!listing) {
+        return (
+            <ClientOnly>
+                <EmptyState />
+            </ClientOnly>
+        );
+    }
+
+    return (
+        <div>
+            {listing?.title}
+            <Image
+                placeholder="blur"
+                blurDataURL={listing?.imageSrc}
+                src={listing?.imageSrc ?? ""}
+                alt={listing?.title ?? ""}
+                width={400}
+                height={400}
+            />
+        </div>
+    );
+};
+
+export default ListingPage;
