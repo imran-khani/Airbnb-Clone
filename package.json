@@ -14,7 +14,6 @@
     "axios": "^1.6.8",
     "bcrypt": "^5.1.1",
     "date-fns": "^3.6.0",
-    "leaflet": "^1.9.4",
     "mongodb": "^6.5.0",
     "next": "^14.2.1",
     "next-auth": "^4.24.7",
@@ -34,7 +33,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
-    "@types/leaflet": "^1.9.8",
+    "@types/leaflet": "^1.9.11",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
