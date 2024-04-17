@@ -1,5 +1,3 @@
-'use client'
-
 import { useState, useEffect } from "react";
 
 
@@ -23,7 +21,7 @@ function useNetwork() {
         }
     }, [])
 
-    return  isOnline 
+    return isOnline
 }
 
 export default useNetwork

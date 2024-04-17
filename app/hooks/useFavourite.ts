@@ -1,58 +1,63 @@
 import axios from "axios";
-import { useCallback, memo, useMemo } from "react";
+
 import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
+
+import React, { useCallback, useMemo } from "react";
+
+import { toast } from "react-hot-toast";
+
 import { SafeUser } from "../types";
+
 import useLoginModal from "./useLoginModal";
-import { BiToggleLeft } from "react-icons/bi";
 
-interface Favourite {
-    listingId: string;
-    currentUser?: SafeUser | null;
+interface IUseFavorite {
+  listingId: string;
+  currentUser?: SafeUser | null;
 }
 
+const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
+  const router = useRouter();
 
-const useFavourite = ({ listingId, currentUser }: Favourite) => {
+  const loginModal = useLoginModal();
 
-    const router = useRouter()
-    const loginModal = useLoginModal()
+  //Is it favorited
+  const hasFavorited = useMemo(() => {
+    const list = currentUser?.favouriteIds || [];
 
-    const hasFavourited = useMemo(() => {
-        const list = currentUser?.favouriteIds || [];
+    return list.includes(listingId);
+  }, [currentUser, listingId]);
 
-        return list.includes(listingId)
-    }, [currentUser, listingId])
+  //To toggle the heart <3
+  const toggleFavorite = useCallback(
+    async (e: React.MouseEvent<HTMLDivElement>) => {
+      e.stopPropagation();
 
-    const toggleFavourite = useCallback(async (e: React.MouseEvent<HTMLDivElement>) => {
-        e.stopPropagation();
+      if (!currentUser) {
+        return loginModal.onOpen();
+      }
 
-        if (!currentUser) {
-            loginModal.onOpen()
-            return
-        }
-        try {
+      try {
+        let request;
 
-            let request;
-            if (hasFavourited) {
-                request = () => axios.delete(`/api/favourites/${listingId}`)
-                toast.success('Removed from favourites')
-            }
-            else {
-                request = () => axios.post(`api/favourites/${listingId}`)
-                toast.success('Added to favourites')
-            }
-
-            await request()
-            router.refresh()
-        } catch (error: any) {
-            toast.error('someting went wrong!')
+        if (hasFavorited) {
+          request = () => axios.delete(`/api/favourites/${listingId}`);
+        } else {
+          request = () => axios.post(`/api/favourites/${listingId}`);
         }
 
-    }, [currentUser, hasFavourited, listingId, loginModal, router])
+        await request();
 
-    return { hasFavourited, toggleFavourite }
-}
+        router.refresh();
 
+        toast.success("Success");
+      } catch (error) {
+        toast.error("Something went wrong");
+      }
+    },
+    [currentUser, loginModal, hasFavorited, listingId, router]
+  );
 
+  return { hasFavorited, toggleFavorite };
+};
 
-export default useFavourite
+export default useFavorite;

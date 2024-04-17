@@ -1,14 +1,15 @@
+import getCurrentUser from "@/app/actions/getCurrentUser";
 import getListingById from "@/app/actions/getListingById";
 import ClientOnly from "@/app/components/ClientOnly";
 import EmptyState from "@/app/components/EmptyState";
-import Image from "next/image";
+import ListingClient from "./ListingClient";
 
 interface IParams {
     listingId?: string;
 }
 const ListingPage = async ({ params }: { params: IParams }) => {
     const listing = await getListingById(params);
-
+    const currentUser = await getCurrentUser();
     if (!listing) {
         return (
             <ClientOnly>
@@ -18,17 +19,14 @@ const ListingPage = async ({ params }: { params: IParams }) => {
     }
 
     return (
-        <div>
-            {listing?.title}
-            <Image
-                placeholder="blur"
-                blurDataURL={listing?.imageSrc}
-                src={listing?.imageSrc ?? ""}
-                alt={listing?.title ?? ""}
-                width={400}
-                height={400}
+        <ClientOnly>
+            <ListingClient
+                listing={listing}
+                // @ts-ignore
+                // eslint-disable-next-line @typescript/ban-types
+                currentUser={currentUser}
             />
-        </div>
+        </ClientOnly>
     );
 };
 

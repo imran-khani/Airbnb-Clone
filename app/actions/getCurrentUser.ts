@@ -19,7 +19,10 @@ export default async function getCurrentUser() {
                 email: session.user.email
             }
         })
-        return user
+        return {
+            ...user,
+            createdAt:user?.createdAt.toISOString(),
+        }
     } catch (error: any) {
         throw new Error(error)
     }
