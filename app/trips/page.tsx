@@ -23,20 +23,20 @@ const TripsPage = async () => {
                     title="No Trips Found"
                     subtitle="You have not booked any trips yet."
                 />
-            </ClientOnly>
+            </ClientOnly> 
         );
     }
 
     return (
         <ClientOnly>
             <TripsClient
-            reservations={reservations}
-            // @ts-ignore
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            currentUser={currentUser}
+                reservations={reservations}
+                // @ts-ignore
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                currentUser={currentUser}
             />
         </ClientOnly>
-    )
+    );
 };
 
 export default TripsPage;
