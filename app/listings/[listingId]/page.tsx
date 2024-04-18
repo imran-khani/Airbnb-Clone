@@ -26,7 +26,6 @@ const ListingPage = async ({ params }: { params: IParams }) => {
                 listing={listing}
                 reservations={reservations}
                 // @ts-ignore
-                // eslint-disable-next-line @typescript/ban-types
                 currentUser={currentUser}
             />
         </ClientOnly>

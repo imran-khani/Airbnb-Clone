@@ -32,7 +32,6 @@ const TripsPage = async () => {
             <TripsClient
                 reservations={reservations}
                 // @ts-ignore
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 currentUser={currentUser}
             />
         </ClientOnly>
