@@ -30,6 +30,7 @@ export async function POST(request: Request) {
     })
 
     const listing = await prisma.listing.create({
+        // @ts-ignore
         data: {
             category,
             locationValue: location.value,
