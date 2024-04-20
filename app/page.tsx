@@ -20,6 +20,7 @@ export default async function Home() {
                     {listings.map((listing) => (
                         <ListingCard
                             key={listing.id}
+                            // @ts-ignore
                             data={listing}
                         />
                     ))}
