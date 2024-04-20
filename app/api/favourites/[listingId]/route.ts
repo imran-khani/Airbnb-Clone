@@ -15,8 +15,8 @@ export async function POST(request: Request,
     if (!currentUser) {
         return NextResponse.error()
     }
-
-    const {listingId} = params
+ 
+    const { listingId } = params
 
     if (!listingId || typeof listingId !== 'string') {
         throw new Error('Invalid listingId')
