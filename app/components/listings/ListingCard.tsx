@@ -8,9 +8,10 @@ import { format } from "date-fns";
 import Image from "next/image";
 import HeartButton from "../HeartButton";
 import Button from "../Button";
+import { Listing } from "@prisma/client";
 
 interface ListingCardProps {
-    data: SafeListing;
+    data: SafeListing | Listing;
     reservation?: SafeReservation;
     disabled?: boolean;
     onAction?: (id: string) => void;
