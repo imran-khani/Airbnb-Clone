@@ -40,7 +40,7 @@ const TripsClient: React.FC<TripsClientProps> = ({
                     setDeletingReservation(null);
                 });
         },
-        [deletingReservation]
+        [router]
     );
 
     return (

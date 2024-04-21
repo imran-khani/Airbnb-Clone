@@ -40,7 +40,7 @@ const PropertyClient: React.FC<PropertyClientProps> = ({
                     setDeletingReservation(null);
                 });
         },
-        [deletingReservation]
+        [router]
     );
 
     return (

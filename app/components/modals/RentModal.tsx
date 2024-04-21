@@ -59,7 +59,7 @@ const RentModal = () => {
     const imageSrc = watch("imageSrc");
     const Map = useMemo(() => {
         return dynamic(() => import("@/app/components/Map"), { ssr: false });
-    }, [location]);
+    }, []);
 
     const onBack = () => {
         setStep((step) => step - 1);
