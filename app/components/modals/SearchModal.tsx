@@ -49,7 +49,7 @@ const SearchModal = () => {
         setStep((prev) => prev + 1);
     }, []);
 
-    const onSubmit = useCallback(() => {
+    const onSubmit = useCallback(async () => {
         if (step !== STEPS.INFO) {
             return onNext();
         }
@@ -61,7 +61,7 @@ const SearchModal = () => {
 
         const updatedQuery: any = {
             ...currentQuery,
-            location: location?.value,
+            location: location?.value || "India",
             roomCount,
             guestCount,
             bathroomCount,
@@ -75,7 +75,7 @@ const SearchModal = () => {
             updatedQuery.endDate = formatISO(dateRange.endDate);
         }
 
-        const url = qs.stringify(
+        const url = qs.stringifyUrl(
             {
                 url: "/",
                 query: updatedQuery,
@@ -187,3 +187,4 @@ const SearchModal = () => {
 };
 
 export default SearchModal;
+//  08:14:32
